@@ -1,0 +1,208 @@
+<%- include('../includes/admin_head.ejs') %>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('../includes/admin_nav.ejs') %>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <%- include('../includes/adminNav.ejs', {name:admin.full_name,image:admin.imageUrl}) %>
+            <div class="container-fluid">
+                <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-dark mb-0"><i class="fa fa-user-secret" style="font-size: 74px;color: rgb(78,115,223);"></i> &nbsp&nbsp&nbspManagers</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#">Showing 1 to 4 of 40&nbsp; &nbsp;</a></div>
+                <div class="row">
+                        <% for (let emp of employee ){ %>
+                            <% if (emp.role_type == 'manger') { %>
+                                
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow border-left-primary py-2" style="padding: 0;">
+                            <div class="card-body" style="padding: 0px;">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto" style="padding: 11px;"><img class="border rounded-circle img-profile"  src="<%= emp.imageUrl%>" alt="<%= emp.imageUrl%>" style="max-width: 65px;max-height: 65px;height: 62px;" /></div>
+                                    <div class="col mr-2" style="height: 63px;width: 101px;">
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(78,115,223);"><%= emp.full_name %></span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1">
+                                            <span style="color: rgb(90,92,105);">r_T:
+                                                <% for (let dep of departement ) { %> 
+                                                <% if( emp.employee_id == dep.employee_id ){%>  <%=dep.name%> <%} %>
+
+                                                <%}%>
+                                            Manger</span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">CR_d:<%= emp.heigher_date%></span></div>
+                                    </div>
+                                    <div class="col-auto" style="width: 26px;height: 59px;"><a href="admin_employee_profile?emp=<%=emp.employee_id%>"><span><i class="far fa-edit" style="font-size: 21px;color: rgb(221,223,235);padding-bottom: 20px;"></i></span></a><a href="#"><i class="fa fa-trash-o" style="width: 23px;font-size: 21px;color: rgb(221,223,235);"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                    <%}%>
+                </div>
+                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="container-fluid" style="margin-top: 37px;">
+                
+                <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-dark mb-0"><i class="fa fa-user-md" style="font-size: 74px;color: rgb(54,185,204);"></i>&nbsp&nbsp&nbspDoctors</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#">&nbsp;Showing 1 to 4 of 40&nbsp;&nbsp;&nbsp; &nbsp;</a></div>
+                    <% for (let spe of specilizations ) { %> 
+                        <div><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#" style="background-color: rgb(54,185,204);margin-bottom: 12px;"><%= spe.name %>&nbsp;&nbsp;</a></div>
+
+                    <div class="row">
+                    <% for (let emp of employee ){ %>
+                        <% if (emp.employee_specilization == spe.name) { %>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow border-left-info py-2">
+                            <div class="card-body" style="padding: 0px;">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto" style="padding: 11px;"><img class="border rounded-circle img-profile"  src="<%= emp.imageUrl%>" alt="<%= emp.imageUrl%>" style="max-width: 65px;max-height: 65px;height: 62px;" /></div>
+                                    <div class="col mr-2" style="height: 63px;width: 101px;">
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(54,185,204);"><%= emp.full_name %></span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">salary: <%= emp.salary%></span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">H.date: <%= emp.heigher_date%></span></div>
+                                    </div>
+                                    <div class="col-auto" style="width: 26px;height: 59px;"><a href="admin_employee_profile?emp=<%=emp.employee_id%>"><span><i class="far fa-edit" style="font-size: 21px;color: rgb(221,223,235);padding-bottom: 20px;"></i></span></a><a href="# "><i class="fa fa-trash-o" style="width: 23px;font-size: 21px;color: rgb(221,223,235);"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                    <%}%>
+                </div>
+                <%}%>
+                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="container-fluid" style="margin-top: 37px;">
+                <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-dark mb-0"><i class="fas fa-user-nurse" style="font-size: 74px;color: rgb(28,200,138);"></i>&nbsp&nbsp&nbspNurses</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#">Showing 1 to 4 of 40&nbsp;&nbsp;&nbsp; &nbsp;</a></div>
+                <div
+                    class="row">
+                    <% for (let emp of employee ){ %>
+                        <% if ( emp.departement == 'nurses'  && emp.role_type != 'manger') { %>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow border-left-success py-2">
+                            <div class="card-body" style="padding: 0px;">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto" style="padding: 11px;"><img class="border rounded-circle img-profile"  src="<%= emp.imageUrl%>" alt="<%= emp.imageUrl%>" style="max-width: 65px;max-height: 65px;height: 62px;" /></div>
+                                    <div class="col mr-2" style="height: 63px;width: 101px;">
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(28,200,138);"><%= emp.full_name %></span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">salary: <%= emp.salary%></span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">H.date: :<%= emp.heigher_date%></span></div>
+                                    </div>
+                                    <div class="col-auto" style="width: 26px;height: 59px;"><a href="admin_employee_profile?emp=<%=emp.employee_id%>"><span><i class="far fa-edit" style="font-size: 21px;color: rgb(221,223,235);padding-bottom: 20px;"></i></span></a><a href="#"><i class="fa fa-trash-o" style="width: 23px;font-size: 21px;color: rgb(221,223,235);"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <%}%>
+                   <%}%>
+            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
+        </div>
+
+                <h3 class="text-dark mb-0"><i class="fas fa-user-astronaut" style="font-size: 74px;color: rgb(54,185,204);"></i>&nbsp&nbsp&nbspLab and Pharmacy employees</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#">Showing 1 to 4 of 40&nbsp;&nbsp;<br></a></div>
+            <div
+                class="row">
+                <% for (let emp of employee ){ %>
+                    <% if ( emp.departement == 'lab/pharmacy' && emp.role_type != 'manger') { %>
+                <div class="col-md-6 col-xl-3 mb-4">
+                    <div class="card shadow border-left-info py-2">
+                        <div class="card-body" style="padding: 0px;">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col-auto" style="padding: 11px;"><img class="border rounded-circle img-profile"  src="<%= emp.imageUrl%>" alt="<%= emp.imageUrl%>" style="max-width: 65px;max-height: 65px;height: 62px;" /></div>
+                                <div class="col mr-2" style="height: 63px;width: 101px;">
+                                    <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(28,200,138);"><%= emp.full_name %></span></div>
+                                    <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">salary: <%= emp.salary%></span></div>
+                                    <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">H.date: :<%= emp.heigher_date%></span></div></div>
+                                <div class="col-auto" style="width: 26px;height: 59px;"><a href="admin_employee_profile?emp=<%=emp.employee_id%>"><span><i class="far fa-edit" style="font-size: 21px;color: rgb(221,223,235);padding-bottom: 20px;"></i></span></a><a href="#"><i class="fa fa-trash-o" style="width: 23px;font-size: 21px;color: rgb(221,223,235);"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                <%}%>
+            </div>
+        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container-fluid" style="margin-top: 37px;">
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0"><i class="fas fa-user-friends" style="font-size: 74px;color: rgb(246,194,62);"></i>&nbsp&nbsp&nbspCleaners&nbsp;</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#">Showing 1 to 4 of 40&nbsp;&nbsp;&nbsp; &nbsp;</a></div>
+
+            <div class="row">
+            <% for (let emp of employee ){ %>
+                <% if ( emp.departement == 'cleaners'  && emp.role_type  == 'employee') { %>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow border-left-warning py-2">
+                            <div class="card-body" style="padding: 0px;">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-auto" style="padding: 11px;"><img class="border rounded-circle img-profile" src="<%= emp.imageUrl%>" alt="<%= emp.imageUrl%>" style="max-width: 65px;max-height: 65px;height: 62px;"></div>
+                                    <div class="col mr-2" style="height: 63px;width: 101px;">
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(246,194,62);"><%= emp.full_name %></span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">salary: <%= emp.salary%></span></div>
+                                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(90,92,105);">H.date: : <%= emp.heigher_date%></span></div>
+                                    </div>
+                                    <div class="col-auto" style="width: 26px;height: 59px;"><a href="admin_employee_profile?emp=<%=emp.employee_id%>"><span><i class="far fa-edit" style="font-size: 21px;color: rgb(221,223,235);padding-bottom: 20px;"></i></span></a><a href="#"><i class="fa fa-trash-o" style="width: 23px;font-size: 21px;color: rgb(221,223,235);"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <%}%>
+            <%}%>
+        </div>
+    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+        <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        </ul>
+    </nav>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+        </div>
+    </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/Studious-selectfile.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

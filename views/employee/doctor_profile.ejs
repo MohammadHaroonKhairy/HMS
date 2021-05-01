@@ -1,0 +1,240 @@
+<% if ( admin ){%> <%- include('../includes/admin_head.ejs') %> <%} else {%>
+<%- include('../includes/emp_head.ejs') %>
+<%}%>
+</head>
+
+<body id="page-top">
+    <div></div>
+    <div id="wrapper">
+        <% if ( admin ){%> <%- include('../includes/admin_nav.ejs') %> <%} else {%>
+        <%- include('../includes/emp_nav.ejs') %>
+        <%}%>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <% if ( admin ){%>  <%- include('../includes/adminNav.ejs', {name:admin.full_name,image:admin.imageUrl}) %> <%} else {%>
+                    <%- include('../includes/empNav.ejs', {name:employee.full_name,image:employee.imageUrl}) %>
+                    <%}%>
+                
+        <div class="container-fluid">
+            <% if (errormessage){%>
+                <p style="width: 599px;height: 43px;padding: 6px 12px;margin-left: 181px;text-align: center;border: 1px solid red;border-radius: 35px 3px; background-color: aliceblue; color: black; box-shadow: inset 5px 5px 3px rgba(235, 23, 23, 0.253);  "><%= errormessage%></p>               
+            <%}%>
+            <h3 class="text-dark mb-4">Profile</h3>
+            
+            <div class="row mb-3">
+                <div class="col-lg-4">
+                    <div class="card mb-3">
+                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="<%=profile.imageUrl%>" alt="<%=profile.imageUrl%>" width="160" height="160">
+                            <div class="mb-3">
+                                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2"><button class="btn btn-primary" type="button" style="width: 135px;height: 31px;font-size: 10px;">Change Image</button></a>
+                                <!-- <button class="btn btn-primary btn-sm" type="button" style="background-color: rgb(234,134,62);">Change Photo</button> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="font-weight-bold m-0" style="color: rgb(234,134,62);">Appointements</h6>
+                            <div class="row" style="height: 24px;">
+                                <div class="col-2" style="width: 35px;">
+                                    <div class="form-group" style="width: 35px;"><label for="username">No.</label></div>
+                                </div>
+                                <div class="col-auto" style="height: 37px;">
+                                    <div class="form-group"><label for="username"><strong>Doc-name</strong><br></label></div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group"><label for="username"><strong>AP-Date</strong></label></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form id="app-column">
+                                <div class="form-row" style="height: 24px;margin: 1px;">
+                                    <div class="col-2" style="width: 35px;padding: 0px;"><input class="form-control" type="number" id="height-1" placeholder="Height (m)" style="width: 35px;"></div>
+                                    <div class="col-auto" style="height: 37px;padding: 0px;"><input class="form-control" type="text" style="width: 102px;"></div>
+                                    <div class="col" style="padding: 0px;"><input class="form-control" type="date" style="width: 126px;"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row mb-3 d-none">
+                        <div class="col">
+                            <div class="card text-white bg-primary shadow">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <p class="m-0">Peformance</p>
+                                            <p class="m-0"><strong>65.2%</strong></p>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-white bg-success shadow">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <p class="m-0">Peformance</p>
+                                            <p class="m-0"><strong>65.2%</strong></p>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-3">
+                                    <p class="m-0 font-weight-bold" style="color: rgb(240,95,64);">User Settings</p>
+                                </div>
+                                <div class="card-body">
+                                    <form action="<% if ( admin ){%>  adminEmp_profile <%} else {%> employee_profile <%}%>" method="POST">
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Fullname</strong></label><input class="form-control" type="text" placeholder="user.name" name="username" value="<% if ( haserror) { %> <%= oldInput.username%> <% } else{%>  <%= profile.full_name%> <%}%>"></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group"><label for="email"><strong>Email Address</strong></label><input class="form-control" type="email" placeholder="user@example.com" name="email" value="<% if ( haserror) { %><%=oldInput.email%> <% } else{%> <%= profile.email%> <%}%> "></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Birthe_date</strong></label><input class="form-control" type="date" name="birth_date" value="<% if ( haserror) { %><%=oldInput.birth_date%> <% } else{%><%=profile.birth_date%>  <%}%> " ></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Phone number</strong></label><input class="form-control" type="number" id="phone_number" placeholder="Phone Number" name="phone_number" value="<% if ( haserror) { %><%=oldInput.phone_number%> <% } else{%><%=profile.phonNumber%> <%}%> " ></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>TIN </strong></label><input type="number" class="form-control" id="tazkira_number" placeholder="tazkira number" name="tazkira_number" value="<% if ( haserror) { %><%=oldInput.tazkira_number%> <% } else{%><%=profile.tazkira_number%> <%}%>" <% if (!admin){%> disabled="" <%}%> /></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="employee_role_id"><strong>Role </strong></label>
+                                                    <select class="form-control" id="employee_role_id" name="employee_role" <% if (!admin){%> <%}%> style="padding-left: 81px;background-color: rgb(247,130,105);">
+                                                    <optgroup label="Employee role type">
+                                                        <% for (let role of roles ) { %> 
+                                                            <option value="<%= role.role_id %>" <% if(profile.role_type= 'role.name'){ %>selected <%} %> ><%= role.name %></option>
+                                                        <% } %>
+                                                    </optgroup></select></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <label for="employee_role_id"><strong>departement</strong></label>
+                                                <select class="form-control" id="departement" name="departement" <% if (!admin){%>  <%}%> style="padding-left: 81px;background-color: rgb(247,130,105);">
+                                                <optgroup label="This is a group">
+                                                    <% for (let dep of departement ) { %> 
+                                                        <option value="<%= dep.departement_id %>"  <% if(profile.departement= 'dep.name'){ %>selected <%} %> ><%= dep.name %></option>
+                                                    <% } %>
+                                                </optgroup></select></div>
+                                            <div class="col">
+                                                <label for="Specilization"><strong>Specilization</strong></label>
+                                                <select class="form-control" id="specilization" name="specilization" <% if (!admin){%>  <%}%>style="padding-left: 81px;background-color: rgb(247,130,105);">
+                                                    <optgroup label="This is a group">
+                                                        <% for (let spe of specilizations ) { %> 
+                                                        <option value="<%= spe.id %>"<% if(profile.employee_specilization= 'spe.name'){ %>selected <%} %>><%= spe.name %></option>
+                                                        <% } %>
+                                                    </optgroup></select></div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong> salary</strong></label><input type="number" class="form-control" id="salary" name="salary" <% if (!admin){%> disabled="" <%}%> placeholder="salary" value="<% if ( haserror) { %><%=oldInput.salary%> <% } else{%><%= profile.salary%>"<%}%> /></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong> doctor_fees</strong></label><input type="number" class="form-control" id="employee_cost" name="employee_cost" <% if (!admin){%> disabled="" <%}%>  placeholder="Doctot fees" value="<% if ( haserror) { %><%=oldInput.employee_cost%> <% } else{%><%= profile.employee_cost%>"<%}%> /></div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="last_name"><strong>Gender</strong><br></label></div>
+                                            <div class="form-row" style="margin-top: -1px;">
+                                                <div class="col" style="margin-top: -3px;">
+                                                    <div class="form-check" style="margin-top: -17px;"><input class="form-check-input" type="radio" id="male" name="gender" value="1" <% if ( haserror) { %><% if(oldInput.gender = 1 ){ %>checked <%} %> <% } else{%> <% if(profile.gender= 'male'){ %>checked <%} %> <%} %> ><label class="form-check-label" for="formCheck-1" style="padding-top: 13px;">male</label></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-check" id="female" style="margin-top: -17px;"><input class="form-check-input" type="radio" id="female" name="gender" value="2"  <% if ( haserror) { %><% if(oldInput.gender = 2 ){ %> checked <%} %><% } else{%> <% if(profile.gender= 'female'){ %>checked <%} %><%} %>><label class="form-check-label" for="formCheck-1" style="padding-top: 13px;">female</label></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" style="background-color: rgb(240,95,64);">Save Settings</button></div>
+                                </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <p class="m-0 font-weight-bold" style="color: rgb(234,134,62);">Contact Settings</p>
+                                </div>
+                                <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="city"><strong>province</strong></label><input class="form-control" type="text" id="province" placeholder="province" name="province" value="<% if ( haserror) { %><%=oldInput.province%> <% } else{%> <%= profile.province%> <%}%>"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="country"><strong>District</strong></label><input class="form-control" type="text" placeholder="4" name="district"value="<% if ( haserror) { %><%=oldInput.district%> <% } else{%> <%= profile.district%><%}%>"></div>
+                                            </div>
+                                            <div class="col"><label for="country"><strong>Home-number</strong></label><input class="form-control" type="number" id="home_no" placeholder="Home_number" name="home_no" value="<% if ( haserror) { %><%=oldInput.home_no%> <% } else{%> <%= profile.home_no%> <%}%>"></div>
+                                        </div>
+                                        <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" style="background-color: rgb(234,134,62);">Save&nbsp;Settings</button></div>
+                                        <% if (admin) { %>
+                                            <input type="hidden" value="<%= emp_id%>" name="emp_id">
+                                        <% } %>                                                   
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow mb-5"></div>
+        </div>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+        </div>
+    </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+
+    <div role="dialog" tabindex="-1" class="modal portfolio-modal text-center show" id="portfolioModal2" style="width: 500px;margin-top: 50px;margin-right: 0px;margin-left: 400px;/*border-radius: 50px;*/height: 391px;max-height: 390px;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="width: 4px; margin-left: 430px;"><span aria-hidden="true">×</span></button>
+                <div class="modal-body" style="margin-top: 0px;">
+                    <div>
+                        <p style="font-family: 'Kaushan Script', cursive;font-size: 31px;margin-top: -10px;"><strong><em>Select your new image !</em></strong></p>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="/img/team/3.jpg" style="width: 150px;" /></div>
+                    </div>
+                    <form action="<% if ( admin ){%> adminChangeEmployeeImage <%} else {%> ChangeEmployeeImage <%}%>" method="post" enctype="multipart/form-data">
+                    <div class="container"><input type="file" name="empimage" style="width: 389px;height: 36px;padding-left: 24px;margin-top: 11px;border: 1px solid black;border-top: none;padding-top: 5px;border-radius: 20px;font-size: 12px;" /></div>
+                </div><button class="btn btn-primary" type="submit" style="width: 200px;margin-top: 4px;margin-left: 147px;margin-bottom: 59px;">Submit</button></div>
+                <% if (admin) { %>
+                    <input type="hidden" value="<%= emp_id%>" name="emp_id">
+                <% } %>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

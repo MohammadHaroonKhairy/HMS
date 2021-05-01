@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>hospital_homepae</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+SC">
+    <link rel="stylesheet" href="fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="css/Beautiful-Time-Picker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="css/untitled.css">
+</head>
+
+<body style="background-image: url(&quot;img/martha-dominguez-de-gouveia-nMyM7fxpokE-unsplash.jpg&quot;);height: 919px;width: 1186px;background-size: 100%;position: fixed;background-attachment: fixed;background-repeat: no-repeat;">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Cormorant SC', serif;color: rgba(229,242,248,0.95);">MHK&nbsp;</a><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Aguafina Script', cursive;font-size: 10px;margin-left: -15px;margin-bottom: -9px;color: rgb(191,233,251);"><strong>SOFTWARE HOUSE</strong>&nbsp;</a>
+            <button
+                data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="/" style="color: rgba(211,241,254,0.8);">homepage</a></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+    <% if (errormessage){%>
+        <div class="container" style="margin-top: 100px;">
+            <p style="width: 599px;height: 60px;background-color: rgba(255,92,92,0.56);text-align: center; color: aliceblue; border: 2px solid rgb(247,247,247);padding-top: 16px;padding-left: 40px;font-size: 16px;border-radius: 30px;margin-top: 0px;margin-left: 380px;margin-bottom: -100px;"><%= errormessage%></p>
+        </div>
+        <%}%>
+    <div style="margin-top: 120px;background-color: rgba(201,201,201,0.56);width: 599px;margin-left: 418px;padding-left: 6px;border-radius: 30px;height: 515px;">
+        <div class="col" style="margin-top: 26px;padding-left: 56px;"><span style="font-size: 29px;margin-left: 287px;"><br>&nbsp;<i class="fas fa-user-tie" style="font-size: 74px;color: rgb(117,154,177);"></i> &nbsp; HMS | Admin Log-in Page<br><br></span></div>
+        <div class="container" style="margin-top: 32px;margin-left: 40px;width: 863px;background-color: none;">
+            <div class="row" style="width: 1136px;margin-left: 0;">
+                <div class="col-md-6" style="margin-left: 0px;margin-top: -30px;">
+                    <form id="patient_login" action="admin_login" method="POST" style="padding-left: 23px;">
+                        <p style="font-size: 31px;padding-left: 85px;">Wellcome Back!</p>
+                        <input class="form-control" type="text" id="full_name" name="email" value="<% if ( haserror) { %><%=oldInput.email%><% } %>" placeholder="Email" style="width: 400px;">
+                        <input class="form-control" type="password" id="password" name="password" placeholder="Password" style="width: 400px;">
+                        <div
+                            style="padding-top: 17px;"><a href="#" style="padding-top: 0px;margin-top: 5px;color: rgb(117,154,177);">Forget Password!</a></div>
+                <div style="padding-top: 17px;"></div><button class="btn btn-primary" type="submit" style="width: 230px;margin-top: 18px;margin-bottom: 108px;height: 40px;font-family: Merriweather, serif;background-color: rgb(117,154,177);margin-left: 84px;">log-in</button></form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="js/Studious-selectfile.js"></script>
+    <script src="js/creative.js"></script>
+    <script src="js/freelancer.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

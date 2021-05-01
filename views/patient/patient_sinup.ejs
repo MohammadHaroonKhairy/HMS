@@ -1,0 +1,91 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body style="background-image: url(&quot;/img/brandon-holmes-GofYo51GQ_4-unsplash.jpg&quot;);">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Cormorant SC', serif;color: rgba(229,242,248,0.95);">MHK&nbsp;</a><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Aguafina Script', cursive;font-size: 10px;margin-left: -15px;margin-bottom: -9px;color: rgb(191,233,251);"><strong>SOFTWARE HOUSE</strong>&nbsp;</a>
+            <button
+                data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="index" style="color: rgba(211,241,254,0.8);">homepage</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="patient_login" style="color: rgba(211,241,254,0.8);">log-in</a></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+    <% if (errormessage){%>
+        <div class="container" style="margin-top: 100px;">
+            <p style="width: 640px;height: 60px;background-color: rgba(255,92,92,0.56);text-align: center; color: aliceblue; border: 2px solid rgb(247,247,247);padding-top: 16px;padding-left: 40px;font-size: 16px;border-radius: 30px;margin-top: 0px;margin-left: 210px;margin-bottom: -139px;"><%= errormessage%></p>
+        </div>
+        <%}%>
+    <div style="margin-top: 170px;background-color: rgba(201,201,201,0.56);width: 640px;margin-left: 329px;padding-left: 121px;border-radius: 30px;margin-bottom: 39px;">
+        <div class="col" style="margin-top: 26px;padding-left: 0px;margin-left: -50px;"><span style="font-size: 29px;margin-left: 287px;"><br><i class="fas fa-user-injured" style="font-size: 74px;color: rgb(3,91,106);"></i>&nbsp; &nbsp; HMS | Patient Registration&nbsp;<br><br></span></div>
+        <div class="container" style="margin-top: 32px;margin-left: -50px;width: 863px;background-color: none;">
+            <div class="row" style="width: 1136px;margin-left: 0;">
+                <div class="col-md-6" style="margin-left: 0px;margin-top: -30px;">
+                    <form id="patient_regestration" action="/patient_sinup" method="POST" enctype="multipart/form-data">
+                        <p>Enter your personal details  below</p>
+                        <input type="text" class="form-control" id="full_name" name="full_name" value="<% if ( haserror) { %><%=oldInput.full_name%><% } %>" placeholder="Full name" style="width: 450px;" />
+                        <input type="file" class="form-control" id="full_name" name="empimage"   style="width: 450px;" />
+                        <div class="form-row">
+                            <div class="col"><input type="text" class="form-control" id="province"  name="province" value="<% if ( haserror) { %><%=oldInput.province%><% } %>"  placeholder="Province" style="width: 210px;" /></div>
+                            <div class="col"><input type="text" class="form-control" id="district"  name="district" value="<% if ( haserror) { %><%=oldInput.district%><% } %>" placeholder="District" style="width: 210px;margin-left: -35px;" /></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col"><input type="number" class="form-control" id="home_no" name="home_no" value="<% if ( haserror) { %><%=oldInput.home_no%><% } %>" placeholder="Home_number" style="width: 450px;" /></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <p style="padding-top: 22px;">Blood Group</p>
+                                <select class="form-control" id="blood_group" name="blood_group" style="width: 450px; color: aliceblue; background-color: rgb(3,91,106);border-radius: 30px;border-top: none;">
+                                    <optgroup label="select your blood_group"  >
+                                        <% for (let blg of blood_group ) { %> 
+                                            <option value="<%= blg.id %>"><%= blg.name %></option>
+                                        <% } %>
+                                    </optgroup></select></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <p style="padding-top: 22px;">Birth_date</p><input class="form-control" type="date" name="birth_date" value="<% if ( haserror) { %><%=oldInput.birth_date%><% } %>" style="width: 450px;" /></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col"><input type="number" class="form-control" id="height" name="height" value="<% if ( haserror) { %><%=oldInput.height%><% } %>" placeholder="Height (m)" style="width: 210px;" /></div>
+                            <div class="col"><input type="number" class="form-control" id="weghit" name="weghit" value="<% if ( haserror) { %><%=oldInput.weghit%><% } %>" placeholder="Weghit (kg)" style="width: 210px;margin-left: -35px;" /></div>
+                        </div>
+                        <p style="padding-top: 20px;">Gender</p>
+                        <div class="form-row" style="margin-top: -1px;">
+                            <div class="col" style="margin-top: -3px;">
+                                <div class="form-check" style="margin-top: -17px;"><input class="form-check-input" type="radio" id="male" name="gender" value="1"><label class="form-check-label" for="male" style="padding-top: 13px;">male</label></div>
+                            </div>
+                            <div class="col" style="margin-left: -35px;">
+                                <div class="form-check" id="married" style="margin-top: -17px;"><input class="form-check-input" type="radio" id="female" name="gender" value="2"><label class="form-check-label" for="female" style="padding-top: 13px;">female</label></div>
+                            </div>
+                        </div>
+                        <p style="padding-top: 20px;">Married Status</p>
+                        <div class="form-row" style="margin-top: -1px;">
+                            <div class="col" style="margin-top: -3px;">
+                                <div class="form-check" style="margin-top: -17px;"><input class="form-check-input" type="radio" id="single" name="married_status" value="1"><label class="form-check-label" for="formCheck-1" style="padding-top: 13px;">single</label></div>
+                            </div>
+                            <div class="col" style="margin-left: -35px;">
+                                <div class="form-check" id="married" style="margin-top: -17px;"><input class="form-check-input" type="radio" id="married" name="married_status" value="2"><label class="form-check-label" for="formCheck-1" style="padding-top: 13px;">married</label></div>
+                            </div>
+                        </div>
+                        <p style="padding-top: 20px;">Contact</p>
+                        <input class="form-control" type="text" id="email" name="email" value="<% if ( haserror) { %><%=oldInput.email%><% } %>" placeholder="Email" style="margin-top: 10px;width: 450px;"><input class="form-control" type="password" id="password" name="password" placeholder="Password" style="width: 450px;">
+                <input
+                    class="form-control" type="password" id="comfirm_password" name="comfirm_password" placeholder="Comfirm Password" style="width: 450px;"><input class="form-control" type="number" id="phone" name="phone" value="<% if ( haserror) { %><%=oldInput.phone%><% } %>"  placeholder="Phone Number" style="width: 450px;">
+                    <div style="margin-right: 0px;margin-top: 21px;"><a href="patient_login" style="padding-top: 0px;margin-top: 7px;color: rgb(3,91,106);">already has an acount : login</a></div><button class="btn btn-primary" type="submit" style="width: 265px;margin-top: 18px;margin-bottom: 105px;height: 40px;font-family: Merriweather, serif;background-color: rgb(3,91,106);margin-left: 84px;">sign up</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('../includes/java_script.ejs') %>
+</body>
+
+</html>

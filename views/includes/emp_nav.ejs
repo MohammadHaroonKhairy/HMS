@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: rgb(32,80,249);background-image: url(&quot;none&quot;);">
+    <div class="container-fluid d-flex flex-column p-0">
+        <hr class="sidebar-divider my-0">
+        <ul class="nav navbar-nav text-light" id="accordionSidebar">
+            <li class="nav-item" role="presentation">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"><span>MHK</span></div>
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 10px;font-family: Akronim, cursive;">SOftware house</span></div>
+                </a><a class="nav-link <%= path === '/employee_dash_bord' ? 'active' : '' %> " href="employee_dash_bord" ><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/employee_profile' ? 'active': '' %>" href="employee_profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/emp_appointement_history' ? 'active' : '' %>" href="emp_appointement_history"><i class="far fa-list-alt"></i><span>Appointements history</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/emp_medicals_history' ? 'active' : '' %>" href="emp_medicals_history"><i class="fas fa-capsules"></i><span>Medicen history &nbsp;&nbsp;</span></a></li>
+        </ul>
+        <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+    </div>
+</nav>

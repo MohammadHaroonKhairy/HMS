@@ -1,0 +1,17 @@
+<ul class="pagination">
+    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+    <% if( curentpage !== 1 && previouspage !== 1){%>
+    <li class="page-item "><a class="page-link" href="?page=1">1</a></li>
+    <%}%>
+    <% if (haspreviouspage){%>
+    <li class="page-item"><a class="page-link" href="?page=<%=previouspage%>"><%=previouspage%></a></li>
+    <%}%>
+    <li class="page-item active "><a class="page-link" href="?page=<%=curentpage%>"><%=curentpage%></a></li>
+    <% if(hasnextpage){ %> 
+    <li class="page-item"><a class="page-link" href="?page=<%=nextpage%>"><%=nextpage%></a></li>
+    <%}%>   
+    <% if(lastpage !== curentpage && nextpage !== lastpage){%>
+    <li class="page-item"><a class="page-link" href="?page=<%=lastpage%>"><%=lastpage%></a></li>
+    <%}%> 
+    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+</ul>

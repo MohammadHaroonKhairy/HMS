@@ -1,0 +1,151 @@
+<%- include('../includes/admin_head.ejs') %>
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('../includes/admin_nav.ejs') %>
+                <div class="d-flex flex-column" id="content-wrapper">
+                    <div id="content">
+                        <%- include('../includes/adminNav.ejs', {name:admin.full_name,image:admin.imageUrl}) %>
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Between dates Reports&nbsp;</h3>
+                    <div class="card" style="width: 483px;margin-left: 261px;">
+                        <form action="B_D_report" method="POST">
+                        <div class="card-body" style="width: 650px;margin-left: -1px;">
+                            <h4 class="card-title">Select between days&nbsp; report type</h4>
+                            <select name="item" style="width: 313px;height: 38px; margin-left: 49px; background-color: rgb(78,115,223);color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;padding-left: 99px;">
+                                <optgroup label="This is a group">
+                                    <option value="patient" selected>Patient</option>
+                                    <option value="appointement">Appointement</option>
+                                </optgroup></select>
+                            <div><span>From&nbsp;&nbsp;</span><input type="date" name="first_date" style="width: 300px;height: 38px;margin-top: 20px;margin-left: 32px;"></div>
+                            <div><span>To&nbsp;</span><input type="date" name="last_date" style="width: 300px;height: 38px;margin-top: 20px;margin-left: 54px;"></div>
+                            <button class="btn btn-primary" type="submit" style="width: 313px;margin-left: 49px;margin-top: 17px;">Submit</button>
+                        </form>
+                        </div>
+                    </div>
+                    <!-- <div class="card shadow" style="width: 939px;margin-left: 50px;margin-top: 22px;">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">View Patient history</p>
+                        </div>
+                        <div class="card-body"><span>patients&nbsp;</span>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr style="width: 698px;">
+                                            <th style="width: 79px;">No</th>
+                                            <th style="width: 237px;">Name</th>
+                                            <th style="width: 125px;">gender</th>
+                                            <th style="padding: -23px;height: 8px;width: 231px;"><br>Contact number</th>
+                                            <th style="width: 185px;">Creation date&nbsp;</th>
+                                            <th style="width: 188px;">Updateion date</th>
+                                            <th style="width: 135px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td style="padding-top: 38px;"><strong>Name</strong></td>
+                                            <td><strong><br>Name&nbsp;<br><br></strong></td>
+                                            <td><strong><br>gender<br><br></strong></td>
+                                            <td><br><strong>Contact number</strong><br><br></td>
+                                            <td><strong><br>Creation date<br><br></strong></td>
+                                            <td><strong><br>Updation date<br><br></strong></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="card shadow" style="width: 937px;margin-left: 50px;margin-top: 22px;">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">View Appointements history</p>
+                        </div>
+                        <div class="card-body"><span>Appointements&nbsp; between  <%= first_date %> and <%= last_date %> </span>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr style="width: 698px;">
+                                            <th style="width: 237px;">Doctor name</th>
+                                            <th style="width: 232px;">Patient name&nbsp;</th>
+                                            <th style="width: 232px;"> Speclization</th>
+                                            <th style="width: 85px;"> Fees</th>
+                                            <th style="width: 185px;">Appointement date</th>
+                                            <th style="width: 185px;">Appointement time</th>
+                                            <th style="width: 188px;">Current status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <% for (let appointement of appoint) { %>
+                                            <tr>
+                                                <td><img class="rounded-circle mr-2" width="30" height="30" src="/img/avatars/avatar1.jpeg"><%= appointement.doctor %></td>
+                                                <td><%= appointement.patient %></td>
+                                                <td><%= appointement.employee_specilization %></td>
+                                                <td><%= appointement.doctor_fees %></td>
+                                                <td><%= appointement.appointement_date %></td>
+                                                <td><%= appointement.appointement_time %></td>
+                                                <td><%= appointement.current_status %></td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td style="padding-top: 38px;"><strong>Doctor name</strong></td>
+                                            <td><strong><br>Patient name<br><br></strong></td>
+                                            <td><strong><br>Speclization<br><br></strong></td>
+                                            <td><strong><br>Fees<br><br></strong></td>
+                                            <td><br><strong>Appointement date</strong><br><br></td>
+                                            <td><strong><br>Appointement time<br><br></strong></td>
+                                            <td><strong><br>Current stataus<br><br></strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing <% if(start == 0 ){ %> 1 <%} else {%> <%=start%> <% } %> to <%= start + 5 %> of <%=totalItem%></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <%- include('../includes/pagination.ejs', {curentpage:curentpage,hasnextpage:hasnextpage,haspreviouspage:haspreviouspage,nextpage:nextpage,previouspage:previouspage,lastpage:lastpage }) %>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+                </div>
+            </footer>
+            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+            <script src="/js/jquery.min.js"></script>
+            <script src="/bootstrap/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+            <script src="/js/Studious-selectfile.js"></script>
+            <script src="/js/creative.js"></script>
+            <script src="/js/freelancer.js"></script>
+            <script src="/js/theme.js"></script>
+        </body>
+        
+        </html>

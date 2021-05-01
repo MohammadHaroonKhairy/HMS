@@ -1,0 +1,88 @@
+<%- include('../includes/head_1.ejs') %>
+</head>
+
+<body class="bg-gradient-primary" style="background-color: rgb(223,130,78);background-image: url(&quot;NONE&quot;);">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Cormorant SC', serif;color: rgba(0,0,0,0.7);">MHK&nbsp;</a><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Aguafina Script', cursive;font-size: 10px;margin-left: -15px;margin-bottom: -9px;color: rgba(0,0,0,0.7);"><strong>SOFTWARE HOUSE</strong>&nbsp;</a>
+            <button
+                data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive" style="width: 479px;">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                    </ul>
+                    <div class="dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"><%=patient.full_name%></span><img class="border rounded-circle img-profile" src="<%=patient.imageUrl%> " style="width: 60px;height: 59px;"></a>
+                        <div
+                            class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="patient_profile"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Change password</a>
+                            <div
+                                class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
+        </div>
+        </div>
+        </div>
+    </nav>
+    <div class="col" style="margin-top: 24px;padding-left: 414px;padding-bottom: 0px;margin-bottom: -32px;"><span style="font-size: 29px;margin-left: 218px;color: rgb(255,255,255);"><br><i class="fa fa-list-alt" style="width: 29px;height: 22px;font-size: 58px;margin-right: 40px;margin-top: 0px;padding-top: 0px;"></i>&nbsp; &nbsp; HMS | Appointement Booking Page<br></span></div>
+    <div
+        class="container" style="margin-top: 66px;">
+        <div class="card shadow-lg o-hidden border-0 my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-flex">
+                        <div class="flex-grow-1 bg-register-image" style="background-image: url(&quot;/img/johny-georgiadis-3ewkNkfJj2k-unsplash.jpg&quot;);"></div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4" style="margin-top: -20px;margin-bottom: 0px;">Book An Appointemet!</h4>
+                            </div>
+                            <form class="user" action="<% if (editing) { %>updating_appointement<% } else { %>post_booking_appointement<% } %>" method="POST">
+                                <div class="form-group">
+                                    <select class="form-control" name="specilization" style="height: 50px;padding: 6px 0px;border-radius: 10rem;font-family: 'Open Sans', sans-serif;padding-left: 200px;color: rgb(6,5,5);">
+                                        <optgroup label="Select a specilization">
+                                            <option > Specilizations </option>  
+                                            <% for (let specil of specilizations) { %> 
+                                                <option  value="<%= specil.id %>" <% if(editing){ %> <% if(appointement.employee_specilization= 'specil.name'){ %>selected <%} %> <%} %> > <%= specil.name %> </option>
+                                                <% } %>
+                                        </optgroup>
+                                    </select>
+
+                                    <select class="form-control" name="employee" style="height: 50px;padding: 6px 0px;border-radius: 10rem;font-family: 'Open Sans', sans-serif;padding-left: 214px;color: rgb(6,5,5);margin-top: 20px;">
+                                        <optgroup label="Select a Doctor">
+                                            <option > Doctors </option>  
+                                            <% for (let emp of employee) { %>
+                                                <option   value="<%=emp.employee_id %>" <% if(editing){ %> <% if(appointement.doctor= 'emp.full_name'){ %>selected <%} %> <%} %>  > <%= emp.full_name %> </option>
+                                                <% } %>
+                                        </optgroup>
+                                    </select>
+                                
+                    </div><input class="form-control" type="text" style="border-radius: 10rem;height: 49px;margin-top: 20px;" placeholder="Fees" disabled="" value="400" name="fees"><input class="form-control" type="date" name="date" value="<% if (editing ) { %><%=appointement.appointement_date%><% } %>" style="height: 50px;border-radius: 10rem;margin-top: 20px;">
+                    <input
+                        class="form-control datetimepicker form-control" type="text" name="time"   style="width: 530px;height: 50px;border-radius: 10rem;margin-top: 20px;" placeholder="Time">
+                        <p>eg : 8:00AM - 8:00PM</p>
+                        <div style="width:170px;box-shadow:0px 0px 4px 0px rgba(0,0,0,0.3);border-radius:4px;display:inline-block;position:relative;margin-right:40px;margin-bottom:40px;"></div>
+                        <hr><button class="btn btn-primary btn-block text-white btn-google btn-user" type="submit"><% if (editing) { %>Update<% } else { %>Submit<% } %></button><a class="btn btn-primary btn-block text-white btn-google btn-user" role="button" style="background-color: rgb(59,89,152);" href="patient_dash_bord">
+                            <i class="fas fa-tachometer-alt"></i>&nbsp;<span style="text-decoration: underline;">GO BACK TO DASBORAD</span><br></a>
+                        <hr>
+                        <input type="hidden" name="appoint_id" value="<%= appointement.id%>">
+                        </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/js/chart.min.js"></script>
+        <script src="/js/bs-init.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <script src="/js/creative.js"></script>
+        <script src="/js/freelancer.js"></script>
+        <script src="/js/theme.js"></script>
+</body>
+
+</html>

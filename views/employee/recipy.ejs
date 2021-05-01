@@ -1,0 +1,193 @@
+<%- include('../includes/emp_head.ejs') %>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('../includes/emp_nav.ejs') %>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <%- include('../includes/empNav.ejs', {name:employee.full_name,image:employee.imageUrl}) %>
+            <div class="col">
+                <div class="form-group">
+            </div>
+            <form action="recipy" method="POST">
+            <input type="hidden" name="pat_id" value="<%= appointement[0].patient_id %>">
+             <input type="hidden" name="emp_id" value="<%= appointement[0].employee_id %>">
+             <div class="container-fluid">
+                <h3 class="text-dark mb-4" style="margin-top: 52px;">HMS&nbsp;Patient&nbsp; Resipe</h3>
+                <div class="card shadow" style="width: 585px;">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Resipe</p>
+                        <div>
+                            <p>Doctor name&nbsp;&nbsp;<input type="text" name="lab_emp" readonly="" value="Doctor <%=appointement[0].doctor%>" style="color: rgb(110,112,126);padding: 6px 12px;"></p>
+                            <p>Patient name&nbsp;&nbsp;<input type="text" name="lab_pat" readonly="" value="<%=appointement[0].patient%>" style="color: rgb(110,112,126);padding: 6px 12px;"></p>
+                            <p>Date&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="date" name="lab_date" style="width: 198px;height: 36px;padding: 12px;"></p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 11px;">No</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th style="width: 153px;font-size: 15px;">Use time per day</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r1" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q1" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u1" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r2" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q2" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u2" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r3" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q3" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u3" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r4" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q4" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u4" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r5" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q5" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u5" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r6" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q6" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u6" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r7" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q7" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u7" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td style="padding: 0;width: 207px;">
+                                            <select name="r8" style="border: none; width: 240px;height: 49px;" >
+                                                <optgroup label="Select lab tests">
+                                                    <option> </option>
+                                                    <% for (let rec of recipy ) { %> 
+                                                        <option value="<%= rec.id %>" ><%= rec.name %></option>
+                                                    <% } %>
+                                                </optgroup></select>
+                                        </td>
+                                        <td style="width: 142px;padding: 0;"><input type="text" name="q8" style="width: 134px;height: 49px;padding: 12px;"></td>
+                                        <td style="padding: 0;"><input type="text" name="u8" style="width: 108px;height: 49px;padding-left: 12px;"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><strong>No</strong></td>
+                                        <td><strong>Name</strong></td>
+                                        <td><strong>Quantity</strong></td>
+                                        <td><strong>Eat time per day</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div><button class="btn btn-primary" style="width: 208px;margin-left: 159px;height: 45px;" type="submit">Submit</button></div>
+                        <input type="hidden" name="regester_id" value="<%=regester_id %>">
+                            <input type="hidden" name="appoint_id" value="<%= appoint_id %>">
+                </div>
+            </div>
+            </form>        
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+
+<%- include('../includes/emp_head.ejs') %>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('../includes/emp_nav.ejs') %>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <%- include('../includes/empNav.ejs', {name:employee.full_name,image:employee.imageUrl}) %>
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4">Patient-Insurance</h3>
+            </div>
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold">Patinent Insurance Detiels</p>
+                </div>
+                <div class="card-body"><span></span><img class="border rounded-circle img-profile" src="/img/avatars/avatar1.jpeg" style="height: 144px;margin-left: 20px;margin-bottom: 13px;">
+                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                        <table class="table my-0" id="dataTable">
+                            <thead>
+                                <tr style="width: 698px;">
+                                    <th>Name</th>
+                                    <th>Tazkira Number</th>
+                                    <th>Age</th>
+                                    <th>Patienta name</th>
+                                    <th>Doctor name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><%= insur.Insurance_Name%></td>
+                                    <td><%= insur.tazkira_number%></td>
+                                    <td><%= insur.age%></td>
+                                    <td><%= insur.Pateint_Name%></td>
+                                    <td><%= insur.doctor%></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="padding-top: 38px;"></td>
+                                    <td><strong><br><br><br></strong></td>
+                                    <td><strong><br><br><br></strong></td>
+                                    <td><br><br></td>
+                                    <td><strong><br></strong></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow" style="margin-top: 41px;">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold">Insurance Contact Detiels</p>
+                </div>
+                <div class="card-body"><span></span>
+                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                        <table class="table my-0" id="dataTable">
+                            <thead>
+                                <tr style="width: 698px;">
+                                    <th>Phone Number</th>
+                                    <th style="padding: -23px;height: 8px;"><br>Email</th>
+                                    <th>province</th>
+                                    <th>district</th>
+                                    <th>home_no</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><%= insur.phonNumber%></td>
+                                    <td><%= insur.email%></td>
+                                    <td><%= insur.province%></td>
+                                    <td><%= insur.district%></td>
+                                    <td><%= insur.home_no%></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="padding-top: 38px;"></td>
+                                    <td><strong><br><br><br></strong></td>
+                                    <td><strong><br><br><br></strong></td>
+                                    <td><br><br></td>
+                                    <td><strong><br></strong></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

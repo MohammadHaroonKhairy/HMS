@@ -1,0 +1,87 @@
+<%- include('../includes/head_1.ejs') %>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+            <%- include('../includes/patient_navbar.ejs') %>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <%- include('../includes/patient_nav.ejs', {name:patient.full_name,image:patient.imageUrl}) %>
+        <div class="container-fluid">
+            <h3 class="text-dark mb-4">Users Appointements</h3>
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold">View history</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 text-nowrap">
+                            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="5" selected="">5</option><option value="20">10</option><option value="20">20</option></select>&nbsp;</label></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                        </div>
+                    </div>
+                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                        <table class="table my-0" id="dataTable">
+                            <thead>
+                                <tr style="width: 698px;">
+                                    <th>Doctor name</th>
+                                    <th>Speclization</th>
+                                    <th style="padding: -23px;height: 8px;width: 48px;"><br>Fees</th>
+                                    <th>Appointement date</th>
+                                    <th>Appointement time</th>
+                                    <th>Current status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (appoint.length > 0) { %>
+                                <% for (let appointement of appoint) { %>
+                                <tr>
+                                    <td><img class="rounded-circle mr-2" width="30" height="30" src="<%=appointement.doctor_image%>"><%= appointement.doctor %></td>
+                                    <td><%= appointement.employee_specilization %></td>
+                                    <td><%= appointement.doctor_fees %></td>
+                                    <td><%= appointement.appointement_date %></td>
+                                    <td><%= appointement.appointement_time %></td>
+                                    <td><%= appointement.current_status %></td>
+                                </tr>
+                                <% } %>
+                                <% } %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="padding-top: 38px;"><strong>Doctor name<br></strong></td>
+                                    <td><strong><br>Speclization&nbsp;<br><br></strong></td>
+                                    <td><strong><br>Fews<br></strong></td>
+                                    <td><br><strong>&nbsp;Appointement date</strong><br><br></td>
+                                    <td><strong><br>Appointement time<br></strong></td>
+                                    <td><strong><br>Current&nbsp;date<br></strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 align-self-center">
+                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing <% if(start == 0 ){ %> 1 <%} else {%> <%=start%> <% } %> to <%= start + 5 %> of <%=totalItem%></p>
+                        </div>
+                        <div class="col-md-6">
+                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                <%- include('../includes/pagination.ejs', {curentpage:curentpage,hasnextpage:hasnextpage,haspreviouspage:haspreviouspage,nextpage:nextpage,previouspage:previouspage,lastpage:lastpage }) %>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+        </div>
+    </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <%- include('../includes/patient_js.ejs') %>
+</body>
+
+</html>

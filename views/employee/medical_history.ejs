@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title><%=pageTitle%></title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+SC">
+    <link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/css/Beautiful-Time-Picker.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('../includes/emp_nav.ejs') %>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <%- include('../includes/empNav.ejs', {name:employee.full_name,image:employee.imageUrl}) %>
+        <div class="container-fluid">
+            <h3 class="text-dark mb-4">Users Medicalhistory</h3>
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold">View history</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 text-nowrap">
+                            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="5" selected="">5</option><option value="20">10</option><option value="20">20</option></select>&nbsp;</label></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                        </div>
+                    </div>
+                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                        <table class="table my-0" id="dataTable">
+                            <thead>
+                                <tr style="width: 698px;">
+                                    <th>Name</th>
+                                    <th>Doctor&nbsp;&nbsp;</th>
+                                    <th style="padding: -23px;height: 8px;"><br><strong>sicknesse</strong><br></th>
+                                    <th>medical recipy</th>
+                                    <th>lab tests</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let med of medicals) { %> 
+                                    <% if ( med.employee_id == user) { %> 
+                                <tr>
+                                   
+                                    <td><img class="rounded-circle mr-2" width="30" height="30" src="<%= med.patient_image%>"><%= med.Patient_name%></td>
+                                    <td><%= med.Doctor_name%></td>
+                                    <td><%= med.patient_sicknesses%></td>
+                                    <input type="hidden" value="<%= med.test_id %>" name="test_id">
+                                    <input type="hidden" value="<%= med.recipy_id %>" name="recipy_id">
+                                    <td><a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-2">view recipy</a>
+                                        
+                                        <div class="modal text-center" role="dialog" tabindex="-1" id="portfolio-modal-2" style="width: 100%;">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="card shadow" style="width: 795px;margin-right: 0px;padding-right: 0px;">
+                                                        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                        <div class="card-header py-3">
+                                                            <p class="text-primary m-0 font-weight-bold">Resipe</p>
+                                                            <div>
+                                                                <p>Doctor name&nbsp; &nbsp;&nbsp;<input type="text" name="username" readonly="" value="<%= med.Doctor_name%>" style="color: rgb(110,112,126);padding: 6px 12px;"></p>
+                                                                <p>Patient name&nbsp; &nbsp;&nbsp;<input type="text" name="username" readonly="" value="<%= med.Patient_name%>" style="color: rgb(110,112,126);padding: 6px 12px;"></p>
+                                                                <p>Date&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="date" value="<%=med.recipy_date%>" style="width: 198px;height: 36px;padding: 12px;"></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                                                <table class="table my-0" id="dataTable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width: 11px;">No</th>
+                                                                            <th>Name</th>
+                                                                            <th style="width: 148px;">Quantity</th>
+                                                                            <th style="width: 153px;font-size: 15px;">Use time per day</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        
+                                                                            
+                                                                            <tr>
+                                                                            <td>1</td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.medicen1  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.quantity1  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.use_time1  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>2</td>
+                                                                                <td style="padding: 0;"><input type="text" value="<%= med.medicen2  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                                <td style="padding: 0;"><input type="text" value="<%= med.quantity2  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                                <td style="padding: 0;"><input type="text" value="<%= med.use_time2  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>3</td>
+                                                                                    <td style="padding: 0;"><input type="text" value="<%= med.medicen3  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                                    <td style="padding: 0;"><input type="text" value="<%= med.quantity3  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                                    <td style="padding: 0;"><input type="text" value="<%= med.use_time3  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>4</td>
+                                                                                    <td style="padding: 0;"><input type="text" value="<%= med.medicen4  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                                    <td style="padding: 0;"><input type="text" value="<%= med.quantity4  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                                    <td style="padding: 0;"><input type="text" value="<%= med.use_time34  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                                    </tr>
+                                                                                <tr>
+                                                                            <td>5</td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.medicen5 %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.quantity5  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.use_time5  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                            <td>6</td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.medicen6  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.quantity6  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.use_time6  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                            <td>7</td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.medicen7  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.quantity7  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.use_time7  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                            <td>8</td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.medicen8  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.quantity8  %>" style="height: 50px;width: 100%;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text" value="<%= med.use_time8  %>" style="width: 100%;height: 50px;padding: 12px;" readonly=""></td>
+                                                                            </tr>
+                                                                     
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <td><strong>No</strong></td>
+                                                                            <td><strong>Name</strong></td>
+                                                                            <td><strong>Quantity</strong></td>
+                                                                            <td><strong>Eat time per day</strong></td>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div><button class="btn btn-primary" type="button">Submite</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-1">view labtest</a>
+                                    
+                                        <div class="modal text-center" role="dialog" tabindex="-1" id="portfolio-modal-1" style="width: 100%;">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="card shadow" style="width: 795px;margin-right: 0px;padding-right: 0px;">
+                                                        <div class="card-header py-3">
+                                                            <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                            <p class="text-primary m-0 font-weight-bold">Lab tests</p>
+                                                            <div>
+                                                                <p>Doctor name&nbsp;&nbsp;<input type="text" name="username" readonly="" value="<%= med.Doctor_name%>" style="color: rgb(110,112,126);padding: 6px 12px;"></p>
+                                                                <p>Patient name&nbsp;&nbsp;<input type="text" name="username" readonly="" value="<%= med.Patient_name%>" style="color: rgb(110,112,126);padding: 6px 12px;"></p>
+                                                                <p>Date&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="date"value="<%= med.tests_date%>" style="width: 198px;height: 36px;padding: 12px;" readonly=""></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                                                <table class="table my-0" id="dataTable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width: 11px;">No</th>
+                                                                            <th>Name</th>
+                                                                            <th style="width: 168px;">value</th>
+                                                                            <th style="width: 75px;">IsActive</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test1  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value1  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive1  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>2</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test2  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value2  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive2  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>3</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test3  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value3  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive3  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>4</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test4  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value4  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive4  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>5</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test5  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value5  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive5  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>6</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test6  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value6  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive6  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>7</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test7  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value7  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive7  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>8</td>
+                                                                            <td style="padding: 0;width: 207px;"><input type="text" value="<%= med.test8  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="width: 142px;padding: 0;"><input type="text" value="<%= med.value8  %>" style="width: 100%;height: 49px;padding: 12px;" readonly=""></td>
+                                                                            <td style="padding: 0;"><input type="text"              value="<%= med.isActive8  %>"style="width: 100%;height: 49px;padding-left: 12px;" readonly=""></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <td><strong>No</strong></td>
+                                                                            <td><strong>Name</strong></td>
+                                                                            <td><strong>value</strong></td>
+                                                                            <td><strong>IsActive</strong></td>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div><a class="btn btn-primary btn-lg mx-auto rounded-pill portfolio-modal-dismiss" role="button" href="#" style="width: 203px;height: 38px;font-size: 16px;"><i class="fa fa-close"></i>&nbsp;Close page</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width: 60px;"><a href="patient_medicals?patient=<%= med.patient_id %>"><i class="far fa-eye" style="font-size: 23px;"></i></a></td>
+                                </tr>
+                                <% } %>  
+                                <% } %> 
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="padding-top: 38px;"><strong>Name</strong></td>
+                                    <td><strong><br>Doctor&nbsp;&nbsp;<br><br></strong></td>
+                                    <td><strong><br>Creation date<br><br></strong></td>
+                                    <td><br><strong>medical recipy</strong><br><br></td>
+                                    <td><strong><br>lab tests<br><br></strong></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 align-self-center">
+                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing <% if(start == 0 ){ %> 1 <%} else {%> <%=start%> <% } %> to <%= start + 5 %> of <%=totalItem%></p>
+                        </div>
+                        <div class="col-md-6">
+                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                <%- include('../includes/pagination.ejs', {curentpage:curentpage,hasnextpage:hasnextpage,haspreviouspage:haspreviouspage,nextpage:nextpage,previouspage:previouspage,lastpage:lastpage }) %>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+        </div>
+    </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

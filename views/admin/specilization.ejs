@@ -1,0 +1,83 @@
+<%- include('../includes/admin_head.ejs') %>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('../includes/admin_nav.ejs') %>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <%- include('../includes/adminNav.ejs', {name:admin.full_name,image:admin.imageUrl}) %>
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4">Doctor specilization</h3>
+                <div class="card shadow">
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">ADD NEW SPECILIZATION&nbsp;</p>
+                        </div>
+                        <div class="card-body">
+                            <form action="/specilization" method="POST">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="username"><strong>Specilization Name</strong><br></label><input class="form-control" type="text" name="name"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Add&nbsp;</button></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Manage specilization</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 81px;">No.</th>
+                                        <th>Name</th>
+                                        <th>Creation date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody>
+                                    <% for (let spe of specilizations ) { %>
+                                    <tr>
+                                        <td><%=spe.id%></td>
+                                        <td><%=spe.specilization%></td>
+                                        <td><%=spe.creation_date%></td>
+                                        <td><a href="#"><i class="fa fa-edit" style="margin-right: 20px;font-size: 20px;"></i></a><a href="delete_specilization?sp_id=<%=spe.id%>"><i class="fa fa-trash-o" style="font-size: 20px;"></i></a></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><strong>No.</strong></td>
+                                        <td><strong>Name</strong></td>
+                                        <td><strong>Creation date</strong></td>
+                                        <td><strong>Action</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/Studious-selectfile.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

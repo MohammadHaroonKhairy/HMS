@@ -1,0 +1,28 @@
+#patient_login input {
+  border-color: rgb(117,154,177);
+  border-radius: 30px;
+  border-top: none;
+  margin-top: 20px;
+}
+
+#employee_login input {
+  border-color: red;
+  border-top: none;
+  border-radius: 30px;
+  margin-top: 30px;
+}
+
+#patient_regestration input {
+  border-color: rgb(3,91,106);
+  border-radius: 30px;
+  border-top: none;
+  margin-top: 20px;
+}
+
+#employee_regestration input {
+  border-color: rgb(3,91,106);
+  border-radius: 30px;
+  border-top: none;
+  margin-top: 20px;
+}
+

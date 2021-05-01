@@ -1,0 +1,119 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/untitled.css">
+</head>
+
+<body style="background-image: url(&quot;/img/brandon-holmes-GofYo51GQ_4-unsplash.jpg&quot;);">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Cormorant SC', serif;color: rgba(229,242,248,0.95);">MHK&nbsp;</a><a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family: 'Aguafina Script', cursive;font-size: 10px;margin-left: -15px;margin-bottom: -9px;color: rgb(191,233,251);"><strong>SOFTWARE HOUSE</strong>&nbsp;</a>
+            <button
+                data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="admin_dash_bord" style="color: rgba(211,241,254,0.8);">Dashboard</a></li>
+                        
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="nav-item" role="presentation"></li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+    <% if (errormessage){%>
+    <div class="container" style="margin-top: 100px;">
+        <p style="width: 640px;height: 60px;background-color: rgba(255,92,92,0.56);text-align: center; color: aliceblue; border: 2px solid rgb(247,247,247);padding-top: 16px;padding-left: 40px;font-size: 16px;border-radius: 30px;margin-top: 0px;margin-left: 210px;margin-bottom: -139px;"><%= errormessage%></p>
+    </div>
+    <%}%>
+    <div style="margin-top: 170px;background-color: rgba(201,201,201,0.56);width: 640px;margin-left: 329px;padding-left: 121px;border-radius: 30px;margin-bottom: 39px;padding-bottom: 0px;">
+        <div class="col" style="margin-top: 26px;padding-left: 0px;margin-left: -54px;"><span style="font-size: 29px;margin-left: 0px;"><br><i class="fas fa-user-nurse" style="font-size: 74px;color: rgb(3,91,106);"></i>&nbsp; HMS | Employee Registration<br><br></span></div>
+        <div class="container" style="margin-top: 32px;margin-left: -45px;width: 863px;background-color: none;">
+            <div class="row" id="cansle" style="width: 1136px;margin-left: 0;">
+                <div class="col-md-6" style="margin-left: 0px;margin-top: -30px;">
+                    <form id="employee_regestration" action="employee_regestration" method="POST" enctype="multipart/form-data">
+                        <p>Employee&nbsp; Personal Details&nbsp; Below</p><input class="form-control" type="text" id="full_name" name="full_name" value="<% if ( haserror) { %><%=oldInput.full_name%><% } %>" placeholder="Full name" style="background-color: rgba(255,255,255,0.66);width: 450px;"><input class="form-control" type="file"
+                            id="image_url" name="empimage" style="width: 450px;background-color: rgba(255,255,255,0.66);" placeholder="Select your images">
+                        <div class="form-row">
+                            <div class="col"><input class="form-control" type="text" id="province" name="province" value="<% if ( haserror) { %><%=oldInput.province%><% } %>" placeholder="Province" style="width: 210px;background-color: rgba(255,255,255,0.66);"></div>
+                            <div class="col"><input class="form-control" type="text" id="district" name="district" value="<% if ( haserror) { %><%=oldInput.district%><% } %>" placeholder="District" style="width: 210px;margin-left: -35px;background-color: rgba(255,255,255,0.66);"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col"><input class="form-control" type="number" id="home_no" name="home_no" value="<% if ( haserror) { %><%=oldInput.home_no%><% } %>" placeholder="Home_number" style="background-color: rgba(255,255,255,0.66);width: 210px;"></div>
+                            <div class="col"><input class="form-control" type="number" id="tazkira_number" name="tazkira_number" value="<% if ( haserror) { %><%=oldInput.tazkira_number%><% } %>" placeholder="Tazkira Number" style="background-color: rgba(255,255,255,0.66);width: 210px;margin-left: -35px;"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <p style="padding-top: 22px;">Birth_date</p><input class="form-control" type="date" name="birth_date" value="<% if ( haserror) { %><%=oldInput.birth_date%><% } %>" style="background-color: rgba(255,255,255,0.66);width: 450px;"></div>
+                        </div>
+                        <p style="padding-top: 20px;">gender</p>
+                        <div class="form-row" style="margin-top: -1px;">
+                            <div class="col" style="margin-top: -3px;">
+                                <div class="form-check" style="margin-top: -17px;"><input class="form-check-input" name="gender" type="radio" id="male" value="1"><label class="form-check-label" for="formCheck-1" style="padding-top: 13px;">male</label></div>
+                            </div>
+                            <div class="col">
+                                <div class="form-check" id="married" style="margin-top: -17px;"><input class="form-check-input" name="gender" type="radio" id="female" value="2"><label class="form-check-label" for="formCheck-1" style="padding-top: 13px;">female</label></div>
+                            </div>
+                        </div>
+                        <p style="padding-top: 20px;">Empolyee Polices</p>
+                        <div class="form-row">
+                            <select class="form-control" name="departement" style="width: 450px;height: 36px;background-color: rgb(3,91,106);color: rgb(255,255,255); border-color: rgb(3,91,106);border-radius: 30px;border-top: none;margin-top: 20px;font-family: Merriweather, serif;padding: center;padding-left: 166px;">
+                                <optgroup label="This is a group">
+                                    <option value="0"></option>
+                                    <% for (let dep of departement ) { %> 
+                                    <option value="<%= dep.departement_id %>"><%= dep.name %></option>
+                                <% } %>
+                            </optgroup>
+                            </select>
+                        </div>
+
+            
+            <div class="form-row">
+                <div class="col">
+                    <p style="padding-top: 20px;">Employee Role<br /></p>
+                    <select class="form-control" name="employee_role" style="width: 210px;height: 36px;background-color: rgb(3,91,106); border-color: rgb(3,91,106);border-radius: 30px;border-top: none; color: rgb(255,255,255);padding-left: 44px; font-family: Merriweather, serif;">
+                        <optgroup label="This is a group">
+                            <option value="0"></option>
+                            <% for (let role of roles ) { %> 
+                                <option value="<%= role.role_id %>" ><%= role.name %></option>
+                            <% } %>
+                        </optgroup></select></div>
+                <div
+                    class="col">
+                    <p style="padding-top: 20px; margin-left: -35px;">Employee Specilization<br /></p>
+                    <select class="form-control" name="employee_job_type" style="width: 210px;height: 36px;background-color: rgb(3,91,106);color: rgb(255,255,255); margin-left: -35px;  border-color: rgb(3,91,106);border-radius: 30px;border-top: none;padding-left: 44px; font-family: Merriweather, serif;">
+                        <optgroup label="This is a group">
+                            <option value="0"></option>
+                            <% for (let spe of specilizations ) { %> 
+                                <option value="<%= spe.id %>" ><%= spe.name %></option>
+                            <% } %>
+                        </optgroup>
+                    </select></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="col"><input class="form-control" type="number" id="doctor_fees" name="doctor_fees" value="<% if ( haserror) { %><%=oldInput.doctor_fees%><% } %>" placeholder="doctor_fees(afg)" style="background-color: rgba(255,255,255,0.66);width: 210px;"></div>
+                <div class="col"><input class="form-control" type="number" id="employee_salary" name="employee_salary" value="<% if ( haserror) { %><%=oldInput.employee_salary%><% } %>" placeholder="employee_salary" style="background-color: rgba(255,255,255,0.66);width: 210px;margin-left: -35px;"></div>
+            </div>
+            <p style="padding-top: 20px;">Contact</p><input class="form-control" type="text" id="email" name="email" value="<% if ( haserror) { %><%=oldInput.email%><% } %>" placeholder="Email" style="margin-top: 10px;background-color: rgba(255,255,255,0.66);width: 450px;"><input class="form-control" type="password" id="password" name="password" placeholder="Password"
+                style="background-color: rgba(255,255,255,0.66);width: 450px;"><input class="form-control" type="password" id="confirem_password" name="confirem_password" placeholder="Confirem Password" style="background-color: rgba(255,255,255,0.66);width: 450px;"><input class="form-control"
+                type="number" id="phone" name="phone" value="<% if ( haserror) { %><%=oldInput.phone%><% } %>" placeholder="Phone Number" style="background-color: rgba(255,255,255,0.66);width: 450px;">
+                <button class="btn btn-primary" id="employee_sign_up" type="submit" style="width: 265px;margin-top: 40px;margin-bottom: 10px;height: 40px;font-family: Merriweather, serif;background-color: rgb(3,91,106);margin-left: 0px;">Resgester</button>
+            </form>
+            <form action="admin_dash_bord" method="GET">
+            <button class="btn btn-primary" id="employee_sign_up" type="submit" style="width: 265px;margin-bottom: 105px;height: 40px;font-family: Merriweather, serif;background-color: rgb(240,95,64);margin-left: 0px;">Cansle</button>
+        </form>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

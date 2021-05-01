@@ -1,0 +1,153 @@
+<%- include('../includes/emp_head.ejs') %>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('../includes/emp_nav.ejs') %>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <%- include('../includes/empNav.ejs', {name:employee.full_name,image:employee.imageUrl}) %>
+        <div class="container-fluid">
+            <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-dark mb-0">Doctor Dashboard</h3>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="m-0 font-weight-bold" style="color: rgb(240,95,64);">Adding patient</p>
+                        </div>
+                        <div class="card-body">
+                            <form  action="/adding_patient" method="POST">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="username"><strong>patient full name&nbsp;</strong></label><input class="form-control" type="text" placeholder="user.name" name="username" value="<%= appointement[0].patient %>"></div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="username"><strong>Doctor name</strong><br></label><input class="form-control" type="text" placeholder="user.name" name="username" value="<%= appointement[0].doctor %>" readonly></div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group" style="margin-bottom: 0px;"><label for="username"><strong>Room</strong><br /></label></div>
+                                        <select class="form-control" name="room" style="background-color: rgb(38,83,212);color: rgb(255,255,255);">
+                                            <optgroup label="select a room ">
+                                                <option value="0">0</option>
+                                                <% for (let room of rooms ) { %> 
+                                                    
+                                                    <option value="<%= room.id %>" ><%= room.name %></option>
+                                                    <% } %>
+                                            </optgroup>
+                                        </select></div>
+                                    <div
+                                        class="col">
+                                        <div class="form-group" style="margin-bottom: 0px;"><label for="username"><strong>Bed number</strong><br /></label></div>
+                                        <select class="form-control" name="bed" style="background-color: rgb(38,83,212);color: rgb(255,255,255);">
+                                            <option value="0">0</option>
+                                            <optgroup label="Select a bed">
+                                                <% for (let bed of [1,2,3,4,5,6] ) { %> 
+                                                    
+                                                    <option value="<%= bed %>" ><%= bed %></option>
+                                                    <% } %>
+                                            </optgroup></select></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col"><label for="country"><strong>Room days</strong><br></label><input class="form-control" type="number" id="room_day" name="room_day" placeholder="Room days"></div>
+                                    <div class="col"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="city"><strong>sickness</strong><br></label><input class="form-control" type="text" placeholder="patient sickness" name="sickness" required></div>
+                                    </div>
+                                </div>
+                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" style="background-color: rgb(71,182,255); width: 208px;margin-top: 50px;margin-left: 120px;height: 45px;">Give medicen</button></div>
+                           
+                        </div>
+                    </div>
+                    <input type="hidden" name="appoint_id" value="<%= appointement[0].id %>">
+                </div>
+                <div class="col">
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <div class="form-group"><label for="username" style="margin-bottom: 0px;margin-left: 1px;"><strong>Old Insurance&nbsp;&nbsp;</strong><br></label></div><input type="number" placeholder="Phone number" name="insurance_phone" style="width: 406px;height: 38px;padding: 6px 12px;margin-left: -5px;margin-bottom: 13px;">
+                            <a href="#"  class=" dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <p class="m-0 font-weight-bold" style="color: rgb(240,95,64);">Add new insurance</p>
+                                </a>
+                                <div  >
+                                    <div class="card-body" class="dropdown-menu" >
+                                        
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="username"><strong>&nbsp;Full name</strong><br></label><input class="form-control" type="text" placeholder="full name" name="insur_name"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="email"><strong>Email Address</strong></label><input class="form-control" type="email" placeholder="user@example.com" name="insur_email"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group" style="margin-bottom: 0px;"><label for="username"><strong>Select image</strong><br /></label></div><input type="text" class="form-control" name="insur_image" placeholder="Enter image" /></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="username"><strong>Birthe_date</strong></label><input class="form-control" type="date" name="insur_date"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="username"><strong>Phone number</strong></label><input class="form-control" type="number" id="phone_number" name="ins_phone" placeholder="Phone Number"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="username"><strong>Tazkiranumber</strong></label><input class="form-control" type="number" id="insur_tin" name="insur_tin" placeholder="TIN number"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="city"><strong>province</strong></label><input class="form-control" type="text" placeholder="provuice" name="insur_province"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <div class="form-group"><label for="country"><strong>District</strong></label><input class="form-control" type="text" placeholder="District" name="insur_district"></div>
+                                                        </div>
+                                                        <div class="col"><label for="country"><strong>Home-number</strong></label><input class="form-control" type="number" id="home_no" placeholder="Home_number" name="insur_home"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="pat" value="<%= appointement[0].patient_id %>">
+                                            <input type="hidden" name="emp" value="<%= appointement[0].employee_id %>">
+                                            <div class="form-group"><button class="btn btn-primary btn-sm" type="button" style="background-color: rgb(240,95,64);">Save Settings</button></div>
+                                        </form>
+                                    </div>
+                                </div> 
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+        </div>
+    </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/creative.js"></script>
+    <script src="/js/freelancer.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

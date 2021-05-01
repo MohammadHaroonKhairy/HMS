@@ -1,0 +1,21 @@
+<nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+    <div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+            <div class="sidebar-brand-icon rotate-n-15"><span>MHK</span></div>
+            <div class="sidebar-brand-text mx-3"><span style="font-size: 10px;font-family: Akronim, cursive;">SOftware house</span></div>
+        </a>
+        <hr class="sidebar-divider my-0">
+        <ul class="nav navbar-nav text-light" id="accordionSidebar">
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/admin_dash_bord' ? 'active': '' %>" href="admin_dash_bord"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/employee_regestration' ? 'active': '' %>" href="employee_regestration"><i class="fas fa-user"></i><span>Add new employee</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/manage_employee' ? 'active': '' %>" href="manage_employee"><i class="fas fa-table"></i><span>Manage employee</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/patient_detiels' ? 'active': '' %>" href="patient_detiels"><i class="far fa-user-circle"></i><span>Manage patients</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link <%= path === '/specilization' ? 'active': '' %>" href="specilization"><i class="fas fa-plus"></i>Add new&nbsp;<span style="text-decoration: underline;">specialization</span>
+                <br></a><a class="nav-link <%= path === '/specilization' ? 'active': '' %>" href="docotor_appointements_history"><i class="fas fa-users-cog"></i><span>Mange meetings<br></span></a>
+                <a
+                    class="nav-link <%= path === '/between_day_report' ? 'active': '' %>" href="between_day_report"><i class="fas fa-file-contract"></i><span>Ropporsts<br></span></a>
+            </li>
+        </ul>
+        <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+    </div>
+</nav>
